@@ -22,7 +22,7 @@ object ProjectBuild extends Build {
         persistLauncher in Test := false,
         testFrameworks += new TestFramework("utest.runner.Framework"),
         libraryDependencies ++= Seq(
-          "org.scala-js" %%% "scalajs-dom" % "0.8.1",
+          "org.scala-js" %%% "scalajs-dom" % "0.8.2",
           "com.lihaoyi" %%% "utest" % "0.3.0" % "test"
         )
       )
@@ -34,7 +34,7 @@ object ProjectBuild extends Build {
       .settings(commonSettings: _*)
       .settings(
         libraryDependencies ++= Seq(
-          "com.typesafe.akka" %% "akka-http-experimental" % "1.0",
+          "com.typesafe.akka" %% "akka-http-experimental" % "2.0-M1",
           "org.specs2" %% "specs2" % "2.3.12" % "test"
         ),
         (resourceGenerators in Compile) <+=
