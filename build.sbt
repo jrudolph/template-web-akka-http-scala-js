@@ -5,5 +5,3 @@ libraryDependencies ++= Seq(
 scalaVersion := "2.11.7"
 
 ScalariformSupport.formatSettings
-
-Revolver.settings
