@@ -1,5 +1,5 @@
 libraryDependencies ++= Seq(
-  "org.specs2" %% "specs2-core" % "2.4.9" % "test"
+  "org.specs2" %% "specs2-core" % "3.7.1" % "test"
 )
 
 scalaVersion := "2.11.7"
