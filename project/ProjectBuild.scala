@@ -30,12 +30,11 @@ object ProjectBuild extends Build {
   // Akka Http based backend
   lazy val backend =
     Project("backend", file("backend"))
-      .settings(Revolver.settings: _*)
       .settings(commonSettings: _*)
       .settings(
         libraryDependencies ++= Seq(
           "com.typesafe.akka" %% "akka-http-experimental" % "2.0-M1",
-          "org.specs2" %% "specs2" % "2.3.12" % "test"
+          "org.specs2" %% "specs2" % "3.7.1" % "test"
         ),
         (resourceGenerators in Compile) <+=
           (fastOptJS in Compile in frontend, packageScalaJSLauncher in Compile in frontend)
