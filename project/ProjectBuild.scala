@@ -33,8 +33,10 @@ object ProjectBuild extends Build {
       .settings(commonSettings: _*)
       .settings(
         libraryDependencies ++= Seq(
-          "com.typesafe.akka" %% "akka-http-experimental" % "2.0-M1",
-          "org.specs2" %% "specs2" % "3.7.1" % "test"
+          "com.typesafe.akka" %% "akka-http-experimental" % "2.4.2",
+          "com.typesafe.akka" %% "akka-http-spray-json-experimental" % "2.4.2",
+          "io.spray" %% "spray-json" % "1.3.2",
+          "org.specs2" %% "specs2-core" % "3.7" % "test"
         ),
         (resourceGenerators in Compile) <+=
           (fastOptJS in Compile in frontend, packageScalaJSLauncher in Compile in frontend)
