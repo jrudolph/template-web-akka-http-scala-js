@@ -55,5 +55,5 @@ object ProjectBuild extends Build {
   def commonSettings = Seq(
     scalaVersion := "2.12.1",
     scalacOptions ++= Seq("-deprecation", "-feature", "-encoding", "utf8", "-Ywarn-dead-code", "-unchecked", "-Xlint", "-Ywarn-unused-import")
-  ) ++ ScalariformSupport.formatSettings
+  )
 }
