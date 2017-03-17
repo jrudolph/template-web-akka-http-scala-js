@@ -20,6 +20,7 @@ lazy val frontend =
       persistLauncher in Test := false,
       testFrameworks += new TestFramework("utest.runner.Framework"),
       libraryDependencies ++= Seq(
+        "org.scala-lang" % "scala-reflect" % scalaVersion.value, // needed not to fail in frontend/updateClassifiers
         "org.scala-js" %%% "scalajs-dom" % scalaJsDomV,
         "com.lihaoyi" %%% "utest" % utestV % "test"
       )
