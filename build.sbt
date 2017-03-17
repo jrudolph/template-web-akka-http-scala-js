@@ -36,10 +36,12 @@ lazy val backend =
         "io.spray" %% "spray-json" % sprayJsonV,
         "org.specs2" %% "specs2-core" % specs2V % "test"
       ),
-      (resourceGenerators in Compile) <+=
-        (fastOptJS in Compile in frontend, packageScalaJSLauncher in Compile in frontend)
-          .map((f1, f2) => Seq(f1.data, f2.data)),
-      watchSources <++= (watchSources in frontend)
+      resourceGenerators in Compile += Def.task {
+        val f1 = (fastOptJS in Compile in frontend).value
+        val f2 = (packageScalaJSLauncher in Compile in frontend).value
+        Seq(f1.data, f2.data)
+      }.taskValue,
+      watchSources ++= (watchSources in frontend).value
     )
 
 def commonSettings = Seq(
