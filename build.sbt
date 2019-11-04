@@ -1,10 +1,11 @@
-val akkaV = "2.5.1"
-val akkaHttpV = "10.0.6"
-val sprayJsonV = "1.3.3"
-val upickleV = "0.4.4"
-val utestV = "0.4.5"
-val scalaJsDomV = "0.9.1"
-val specs2V = "3.8.9"
+val scalaV = "2.13.1"
+val akkaV = "2.6.0-RC2"
+val akkaHttpV = "10.1.10"
+val sprayJsonV = "1.3.5"
+val upickleV = "0.8.0"
+val utestV = "0.7.1"
+val scalaJsDomV = "0.9.7"
+val specs2V = "4.8.0"
 
 lazy val root =
   Project("root", file("."))
@@ -32,7 +33,7 @@ lazy val backend =
     .settings(commonSettings: _*)
     .settings(
       libraryDependencies ++= Seq(
-        "com.typesafe.akka" %% "akka-stream" % akkaV % "runtime",
+        "com.typesafe.akka" %% "akka-stream" % akkaV,
         "com.typesafe.akka" %% "akka-http" % akkaHttpV,
         "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpV,
         "io.spray" %% "spray-json" % sprayJsonV,
@@ -47,6 +48,6 @@ lazy val backend =
     )
 
 def commonSettings = Seq(
-  scalaVersion := "2.12.2",
-  scalacOptions ++= Seq("-deprecation", "-feature", "-encoding", "utf8", "-Ywarn-dead-code", "-unchecked", "-Xlint", "-Ywarn-unused-import")
+  scalaVersion := scalaV,
+  scalacOptions ++= Seq("-deprecation", "-feature", "-encoding", "utf8", "-Ywarn-dead-code", "-unchecked", "-Xlint")
 )

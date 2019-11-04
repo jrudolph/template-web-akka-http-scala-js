@@ -2,14 +2,12 @@ package example.akkawschat
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
-import akka.stream.ActorMaterializer
 
 import scala.util.{ Success, Failure }
 
 object Boot extends App {
   implicit val system = ActorSystem()
   import system.dispatcher
-  implicit val materializer = ActorMaterializer()
 
   val config = system.settings.config
   val interface = config.getString("app.interface")
