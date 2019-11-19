@@ -17,10 +17,10 @@ object Boot extends App {
 
   val binding = Http().bindAndHandle(service.route, interface, port)
   binding.onComplete {
-    case Success(binding) ⇒
+    case Success(binding) =>
       val localAddress = binding.localAddress
       println(s"Server is listening on ${localAddress.getHostName}:${localAddress.getPort}")
-    case Failure(e) ⇒
+    case Failure(e) =>
       println(s"Binding failed with ${e.getMessage}")
       system.terminate()
   }
