@@ -1,0 +1,41 @@
+@import example.akkawschat._
+
+@(content: Html)
+
+<html>
+<head>
+<title>Hello World</title>
+
+<!--Import Google Icon Font-->
+<link rel="stylesheet" href="css/material-icons-font.css">
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="css/materialize-1.0.0.min.css">
+
+</head>
+<body>
+<nav role="navigation">
+<div class="nav-wrapper container">
+    <div class="brand-logo">
+        Hello World (HW)
+    </div>
+</div>
+</nav>
+
+<div class="container">
+    <div class="section">
+    @content
+    </div>
+</div>
+
+<!-- Compiled and minified JavaScript -->
+<script src="js/materialize-1.0.0.min.js"></script>
+</body>
+<footer class="page-footer orange">
+    <div class="footer-copyright">
+        <div class="container">
+            @{BuildInfo.longProjectName} Version @{BuildInfo.version}
+        </div>
+    </div>
+</footer>
+</html>

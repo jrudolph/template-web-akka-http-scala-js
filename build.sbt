@@ -8,12 +8,16 @@ val scalaJsDomV = "0.9.7"
 val specs2V = "4.8.0"
 
 lazy val root =
-  Project("root", file("."))
-    .aggregate(frontend, backend)
+  project.in(file("."))
+    .aggregate(logic, frontend, web)
+
+lazy val logic =
+  project.in(file("logic"))
+    .settings(commonSettings: _*)
 
 // Scala-Js frontend
 lazy val frontend =
-  Project("frontend", file("frontend"))
+  project.in(file("frontend"))
     .enablePlugins(ScalaJSPlugin)
     .settings(commonSettings: _*)
     .settings(
@@ -28,8 +32,9 @@ lazy val frontend =
     )
 
 // Akka Http based backend
-lazy val backend =
-  Project("backend", file("backend"))
+lazy val web =
+  project.in(file("web"))
+    .enablePlugins(SbtTwirl, BuildInfoPlugin)
     .settings(commonSettings: _*)
     .settings(
       libraryDependencies ++= Seq(
@@ -44,8 +49,14 @@ lazy val backend =
         val f2 = (packageScalaJSLauncher in Compile in frontend).value
         Seq(f1.data, f2.data)
       }.taskValue,
-      watchSources ++= (watchSources in frontend).value
+      watchSources ++= (watchSources in frontend).value,
+
+      buildInfoPackage := "example.akkawschat",
+      buildInfoKeys ++= Seq(
+        "longProjectName" -> "Example Project"
+      ),
     )
+  .dependsOn(logic)
 
 def commonSettings = Seq(
   scalaVersion := scalaV,
