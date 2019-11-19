@@ -21,8 +21,7 @@ lazy val frontend =
     .enablePlugins(ScalaJSPlugin)
     .settings(commonSettings: _*)
     .settings(
-      persistLauncher in Compile := true,
-      persistLauncher in Test := false,
+      scalaJSUseMainModuleInitializer := true,
       testFrameworks += new TestFramework("utest.runner.Framework"),
       libraryDependencies ++= Seq(
         "org.scala-lang" % "scala-reflect" % scalaVersion.value, // needed not to fail in frontend/updateClassifiers
@@ -45,9 +44,8 @@ lazy val web =
         "org.specs2" %% "specs2-core" % specs2V % "test"
       ),
       resourceGenerators in Compile += Def.task {
-        val f1 = (fastOptJS in Compile in frontend).value
-        val f2 = (packageScalaJSLauncher in Compile in frontend).value
-        Seq(f1.data, f2.data)
+        val f1 = (fastOptJS in Compile in frontend).value.data
+        Seq(f1, new File(f1.getPath+".map"))
       }.taskValue,
       watchSources ++= (watchSources in frontend).value,
 
