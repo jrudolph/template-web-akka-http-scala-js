@@ -1,5 +1,5 @@
 val scalaV = "2.13.1"
-val akkaV = "2.6.0-RC2"
+val akkaV = "2.6.0"
 val akkaHttpV = "10.1.10"
 val sprayJsonV = "1.3.5"
 val upickleV = "0.8.0"
