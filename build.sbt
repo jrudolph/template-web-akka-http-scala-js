@@ -1,11 +1,11 @@
-val scalaV = "2.13.1"
-val akkaV = "2.6.6"
-val akkaHttpV = "10.2.0-M1"
-val sprayJsonV = "1.3.5"
+val scalaV = "2.13.4"
+val akkaV = "2.6.10"
+val akkaHttpV = "10.2.2"
+val sprayJsonV = "1.3.6"
 val upickleV = "0.8.0"
-val utestV = "0.7.4"
-val scalaJsDomV = "1.0.0"
-val specs2V = "4.10.0"
+val utestV = "0.7.5"
+val scalaJsDomV = "1.1.0"
+val specs2V = "4.10.5"
 
 lazy val root =
   project.in(file("."))

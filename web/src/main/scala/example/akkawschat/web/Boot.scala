@@ -18,7 +18,7 @@ object Boot extends App {
   val shutdownSignal = Promise[Unit]()
   val service = new Webservice(shutdownSignal.future)
 
-  val binding = Http().bindAndHandle(service.route, interface, port)
+  val binding = Http().newServerAt(interface, port).bind(service.route)
   binding.onComplete {
     case Success(binding) =>
       val localAddress = binding.localAddress

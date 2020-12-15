@@ -12,7 +12,7 @@ object AutoReloader {
 
         socket.onclose = { (e: dom.Event) =>
           println(s"Socket was closed, reloading in $reconnectionIntervalMillis ms")
-          dom.window.setTimeout(tryReconnection _, reconnectionIntervalMillis)
+          dom.window.setTimeout(tryReconnection _, reconnectionIntervalMillis.toDouble)
         }
       }
       socket.onerror = { (e: dom.Event) =>
@@ -29,7 +29,7 @@ object AutoReloader {
       }
       socket.onerror = { (e: dom.raw.Event) =>
         println(s"Got error $e, retrying in $reconnectionIntervalMillis ms")
-        dom.window.setTimeout(tryReconnection _, reconnectionIntervalMillis)
+        dom.window.setTimeout(tryReconnection _, reconnectionIntervalMillis.toDouble)
       }
     }
     watchdog()
