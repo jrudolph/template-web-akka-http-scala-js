@@ -53,6 +53,11 @@ lazy val web =
       buildInfoKeys ++= Seq(
         "longProjectName" -> "Example Project"
       ),
+
+      // use separate dependency and app jars
+      assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false, includeDependency = false),
+      assemblyJarName in assembly := "app.jar", // contract with Dockerfile
+      assemblyJarName in assemblyPackageDependency := "deps.jar", // contract with Dockerfile
     )
   .dependsOn(logic)
 
