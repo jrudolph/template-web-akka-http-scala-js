@@ -1,11 +1,10 @@
-val scalaV = "2.13.6"
-val akkaV = "2.6.14"
-val akkaHttpV = "10.2.4"
+val scalaV = "2.13.10"
+val akkaV = "2.6.20"
+val akkaHttpV = "10.2.10"
 val sprayJsonV = "1.3.6"
-val upickleV = "0.8.0"
+val upickleV = "0.8.1"
 val utestV = "0.7.10"
-val scalaJsDomV = "1.1.0"
-val specs2V = "4.11.0"
+val scalaJsDomV = "2.3.0"
 
 lazy val root =
   project.in(file("."))
@@ -41,13 +40,12 @@ lazy val web =
         "com.typesafe.akka" %% "akka-http" % akkaHttpV,
         "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpV,
         "io.spray" %% "spray-json" % sprayJsonV,
-        "org.specs2" %% "specs2-core" % specs2V % "test"
       ),
-      resourceGenerators in Compile += Def.task {
-        val f1 = (fastOptJS in Compile in frontend).value.data
+      Compile / resourceGenerators += Def.task {
+        val f1 = (frontend / Compile /fastOptJS).value.data
         Seq(f1, new File(f1.getPath+".map"))
       }.taskValue,
-      watchSources ++= (watchSources in frontend).value,
+      watchSources ++= (frontend / watchSources).value,
 
       buildInfoPackage := "example.akkawschat",
       buildInfoKeys ++= Seq(
@@ -55,9 +53,9 @@ lazy val web =
       ),
 
       // use separate dependency and app jars
-      assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false, includeDependency = false),
-      assemblyJarName in assembly := "app.jar", // contract with Dockerfile
-      assemblyJarName in assemblyPackageDependency := "deps.jar", // contract with Dockerfile
+      assembly / assemblyOption := (assembly / assemblyOption).value.copy(includeScala = false, includeDependency = false),
+      assembly / assemblyJarName := "app.jar", // contract with Dockerfile
+      assembly / assemblyJarName := "deps.jar", // contract with Dockerfile
     )
   .dependsOn(logic)
 
